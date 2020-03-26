@@ -29,5 +29,8 @@
     "url": "https://github.com/tritonJS826/virtualKeyboard/issues"
   },
   "homepage": "https://github.com/tritonJS826/virtualKeyboard#readme",
-  "dependencies": {}
+  "dependencies": {
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1"
+  }
 }
