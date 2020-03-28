@@ -40,13 +40,11 @@ function changeStylePressed(id) {
 function changeUppercase() {
   keyboardBaseState.changeUppercase();
   keyboardBaseState.renderState('keyboardState');
-  alert('changeUppercase');
 }
 
 function changeLanguage() {
   keyboardBaseState.changeLanguage();
   keyboardBaseState.renderState('keyboardState');
-  alert('changeLanguage');
 }
 
 function notSimpleKey() {
@@ -132,11 +130,13 @@ function notSimpleKey() {
       }
       if (isLeftShiftPressed) {
         changeLanguage();
+        changeUppercase();
         changeStylePressed(id);
         changeStylePressed('leftShift');
       }
       if (isRightShiftPressed) {
         changeLanguage();
+        changeUppercase();
         changeStylePressed(id);
         changeStylePressed('rightShift');
       }
@@ -151,10 +151,12 @@ function notSimpleKey() {
       }
       if (isLeftShiftPressed) {
         changeLanguage();
+        changeLanguage();
         changeStylePressed(id);
         changeStylePressed('leftShift');
       }
       if (isRightShiftPressed) {
+        changeLanguage();
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed('rightShift');
