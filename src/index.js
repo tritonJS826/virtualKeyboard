@@ -1,7 +1,6 @@
 import addStyles from './style';
 import allButtonsArray from './keyboard/allButtonsArray';
 import keyboardBaseState from './keyboard/keyboardState';
-import renderKeyboard from './keyboard/renderKeyboard';
 import onClickKey from './keyboard/onClickKey';
 
 
@@ -19,7 +18,7 @@ addStyles();
 
 
 const KEYBOARD = 'keyboard';
-renderKeyboard('renderKeyEn', allButtonsArray, KEYBOARD);
+keyboardBaseState.renderKeyboard('en', allButtonsArray, KEYBOARD);
 
 
 onClickKey();

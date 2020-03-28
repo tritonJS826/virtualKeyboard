@@ -71,6 +71,7 @@ function notSimpleKey() {
     if (id === 'capslock') {
       changeStylePressed(id);
       changeUppercase();
+      keyboardBaseState.renderKeyboard();
     }
     if (id === 'leftShift') {
       const isRightShiftPressed = document.getElementById('rightShift').classList.contains('pressed');
@@ -85,16 +86,19 @@ function notSimpleKey() {
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed('leftCtrl');
+        keyboardBaseState.renderKeyboard();
         return;
       }
       if (isRightCtrlPressed) {
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed('rightCtrl');
+        keyboardBaseState.renderKeyboard();
         return;
       }
       // если ничего другие shifts and contrls не нажаты
       changeUppercase();
+      keyboardBaseState.renderKeyboard();
     }
     if (id === 'rightShift') {
       const isLeftShiftPressed = document.getElementById('leftShift').classList.contains('pressed');
@@ -109,16 +113,19 @@ function notSimpleKey() {
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed('leftCtrl');
+        keyboardBaseState.renderKeyboard();
         return;
       }
       if (isRightCtrlPressed) {
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed('rightCtrl');
+        keyboardBaseState.renderKeyboard();
         return;
       }
       // если никакие другие shifts and contrls не нажаты
       changeUppercase();
+      keyboardBaseState.renderKeyboard();
     }
     if (id === 'leftCtrl') {
       const isRightCtrlPressed = document.getElementById('rightCtrl').classList.contains('pressed');
@@ -133,12 +140,14 @@ function notSimpleKey() {
         changeUppercase();
         changeStylePressed(id);
         changeStylePressed('leftShift');
+        keyboardBaseState.renderKeyboard();
       }
       if (isRightShiftPressed) {
         changeLanguage();
         changeUppercase();
         changeStylePressed(id);
         changeStylePressed('rightShift');
+        keyboardBaseState.renderKeyboard();
       }
     }
     if (id === 'rightCtrl') {
@@ -154,12 +163,14 @@ function notSimpleKey() {
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed('leftShift');
+        keyboardBaseState.renderKeyboard();
       }
       if (isRightShiftPressed) {
         changeLanguage();
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed('rightShift');
+        keyboardBaseState.renderKeyboard();
       }
     }
     if (id === 'leftAlt') {
