@@ -1,17 +1,17 @@
 function renderKeyRu(key, root) {
-  document.getElementById(root).innerHTML += `<div class="${key.ru} key" id=${key.en}>${key.ru}</div>`;
+  document.getElementById(root).innerHTML += `<div class="${key.id} key" id=${key.id}>${key.ru}</div>`;
 }
 
 function renderKeyEn(key, root) {
-  document.getElementById(root).innerHTML += `<div class="${key.en} key" id="${key.en}">${key.en}</div>`;
+  document.getElementById(root).innerHTML += `<div class="${key.id} key" id="${key.id}">${key.en}</div>`;
 }
 
 function renderKeyRuShift(key, root) {
-  document.getElementById(root).innerHTML += `<div class="${key.ruShift} key" id="${key.en}">${key.ruShift}</div>`;
+  document.getElementById(root).innerHTML += `<div class="${key.id} key" id="${key.id}">${key.ruShift}</div>`;
 }
 
 function renderKeyEnShift(key, root) {
-  document.getElementById(root).innerHTML += `<div class="${key.enShift} key" id="${key.en}">${key.enShift}</div>`;
+  document.getElementById(root).innerHTML += `<div class="${key.id} key" id="${key.id}">${key.enShift}</div>`;
 }
 
 export {

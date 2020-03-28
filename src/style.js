@@ -4,6 +4,11 @@ function addStyles() {
 
   body {
     padding: 20vh 25vw;
+    transition: all 0.5s;
+  }
+
+  * {
+    transition: all 0.5s;
   }
 
   .input--field {
@@ -12,11 +17,11 @@ function addStyles() {
 
   .textarea {
     width: 99%;
+    height: 250px;
     background: black;
     color:white;
     font-size: 20pt;
   }
-
 
   .keyboard {
     display: flex;
@@ -35,6 +40,7 @@ function addStyles() {
     height: 30px;
     margin: 2px;
     min-width:41px;
+    border-radius:3px;
   }
 
   .enter {
@@ -47,6 +53,23 @@ function addStyles() {
   .space {
     min-width:310px;
   }
+
+  .leftShift {
+    min-width: 115px;
+  }
+
+  .pressed {
+    background: orange;
+  }
+  @keyframes onpress {
+  from {
+    background:orange;
+  }
+
+  to {
+    background:black;
+  }
+}
 
 
   `;
