@@ -1,24 +1,66 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 
 module.exports = {
   entry: './src/index.js',
   output: {
+    filename: 'app.bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
   },
-  devtool: "source-map",
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000
+  devtool: 'source-map',
+  module: {
+    rules: [{
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'eslint-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        }),
+      },
+      {
+        test: /\.(png|jp(e*)g|svg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8000,
+            name: 'images/[hash]-[name].[ext]',
+          },
+        }, ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template:__dirname + "/src/index.html",
-      inject: 'body'
-    })
-  ]
-
-
+      hash: true,
+      title: 'My Awesome application',
+      myPageHeader: 'Hello World',
+      template: './src/index.html',
+      filename: 'index.html',
+    }),
+    new ExtractTextPlugin({
+      filename: 'style.css',
+    }),
+    new CopyWebpackPlugin([{
+      from: './src/images',
+      to: 'images',
+    }]),
+  ],
+  devServer: {
+    contentBase: './src/public',
+    port: 7700,
+  },
 };

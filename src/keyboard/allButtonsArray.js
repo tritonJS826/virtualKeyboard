@@ -1,0 +1,314 @@
+const allButtonsArray = [{
+  ru: 'ё',
+  en: '`',
+  ruShift: 'Ё',
+  enShift: '~',
+}, {
+  ru: '1',
+  en: '1',
+  ruShift: '!',
+  enShift: '!',
+}, {
+  ru: '2',
+  en: '2',
+  ruShift: '&#34',
+  enShift: '@',
+}, {
+  ru: '3',
+  en: '3',
+  ruShift: '№',
+  enShift: '#',
+}, {
+  ru: '4',
+  en: '4',
+  ruShift: ';',
+  enShift: '$',
+}, {
+  ru: '5',
+  en: '5',
+  ruShift: '%',
+  enShift: '%',
+}, {
+  ru: '6',
+  en: '6',
+  ruShift: ':',
+  enShift: '^',
+}, {
+  ru: '7',
+  en: '7',
+  ruShift: '?',
+  enShift: '&',
+}, {
+  ru: '8',
+  en: '8',
+  ruShift: '*',
+  enShift: '*',
+}, {
+  ru: '9',
+  en: '9',
+  ruShift: '(',
+  enShift: '(',
+}, {
+  ru: '0',
+  en: '0',
+  ruShift: ')',
+  enShift: ')',
+}, {
+  ru: '-',
+  en: '-',
+  ruShift: '_',
+  enShift: '_',
+}, {
+  ru: '=',
+  en: '=',
+  ruShift: '+',
+  enShift: '+',
+}, {
+  ru: 'backspace',
+  en: 'backspace',
+  ruShift: 'backspace',
+  enShift: 'backspace',
+}, {
+  ru: '↹',
+  en: '↹',
+  ruShift: '↹',
+  enShift: '↹',
+}, {
+  ru: 'й',
+  en: 'q',
+  ruShift: 'Й',
+  enShift: 'Q',
+}, {
+  ru: 'ц',
+  en: 'w',
+  ruShift: 'Ц',
+  enShift: 'W',
+}, {
+  ru: 'у',
+  en: 'e',
+  ruShift: 'У',
+  enShift: 'E',
+}, {
+  ru: 'к',
+  en: 'r',
+  ruShift: 'К',
+  enShift: 'R',
+}, {
+  ru: 'е',
+  en: 't',
+  ruShift: 'Е',
+  enShift: 'T',
+}, {
+  ru: 'н',
+  en: 'y',
+  ruShift: 'Н',
+  enShift: 'Y',
+}, {
+  ru: 'г',
+  en: 'u',
+  ruShift: 'Г',
+  enShift: 'U',
+}, {
+  ru: 'ш',
+  en: 'i',
+  ruShift: 'Ш',
+  enShift: 'I',
+}, {
+  ru: 'щ',
+  en: 'o',
+  ruShift: 'Щ',
+  enShift: 'O',
+}, {
+  ru: 'з',
+  en: 'p',
+  ruShift: 'З',
+  enShift: 'P',
+}, {
+  ru: 'х',
+  en: '[',
+  ruShift: 'Х',
+  enShift: '{',
+}, {
+  ru: 'ъ',
+  en: ']',
+  ruShift: 'Ъ',
+  enShift: '}',
+}, {
+  ru: '&#92',
+  en: '&#92',
+  ruShift: '/',
+  enShift: '|',
+}, {
+  ru: 'capslock',
+  en: 'capslock',
+  ruShift: 'capslock',
+  enShift: 'capslock',
+}, {
+  ru: 'ф',
+  en: 'a',
+  ruShift: 'Ф',
+  enShift: 'A',
+}, {
+  ru: 'ы',
+  en: 's',
+  ruShift: 'Ы',
+  enShift: 'S',
+}, {
+  ru: 'в',
+  en: 'd',
+  ruShift: 'В',
+  enShift: 'D',
+}, {
+  ru: 'а',
+  en: 'f',
+  ruShift: 'А',
+  enShift: 'F',
+}, {
+  ru: 'п',
+  en: 'g',
+  ruShift: 'П',
+  enShift: 'G',
+}, {
+  ru: 'р',
+  en: 'h',
+  ruShift: 'Р',
+  enShift: 'H',
+}, {
+  ru: 'о',
+  en: 'j',
+  ruShift: 'О',
+  enShift: 'J',
+}, {
+  ru: 'л',
+  en: 'k',
+  ruShift: 'Л',
+  enShift: 'K',
+}, {
+  ru: 'д',
+  en: 'l',
+  ruShift: 'Д',
+  enShift: 'L',
+}, {
+  ru: 'ж',
+  en: ';',
+  ruShift: 'Ж',
+  enShift: ':',
+}, {
+  ru: 'э',
+  en: "'",
+  ruShift: 'Э',
+  enShift: '&#34',
+}, {
+  ru: 'enter',
+  en: 'enter',
+  ruShift: 'enter',
+  enShift: 'enter',
+}, {
+  ru: 'shift',
+  en: 'shift',
+  ruShift: 'shift',
+  enShift: 'shift',
+}, {
+  ru: 'я',
+  en: 'z',
+  ruShift: 'Я',
+  enShift: 'Z',
+}, {
+  ru: 'ч',
+  en: 'x',
+  ruShift: 'Ч',
+  enShift: 'X',
+}, {
+  ru: 'с',
+  en: 'c',
+  ruShift: 'С',
+  enShift: 'C',
+}, {
+  ru: 'м',
+  en: 'v',
+  ruShift: 'М',
+  enShift: 'V',
+}, {
+  ru: 'и',
+  en: 'b',
+  ruShift: 'И',
+  enShift: 'B',
+}, {
+  ru: 'т',
+  en: 'n',
+  ruShift: 'Т',
+  enShift: 'N',
+}, {
+  ru: 'б',
+  en: ',',
+  ruShift: 'Б',
+  enShift: '<',
+}, {
+  ru: 'ю',
+  en: '.',
+  ruShift: 'Ю',
+  enShift: '>',
+}, {
+  ru: '.',
+  en: '/',
+  ruShift: ',',
+  enShift: '?',
+}, {
+  ru: 'shift',
+  en: 'shift',
+  ruShift: 'shift',
+  enShift: 'shift',
+}, {
+  ru: '↑',
+  en: '↑',
+  ruShift: '↑',
+  enShift: '↑',
+}, {
+  ru: 'ctrl',
+  en: 'ctrl',
+  ruShift: 'ctrl',
+  enShift: 'ctrl',
+}, {
+  ru: 'win',
+  en: 'win',
+  ruShift: 'win',
+  enShift: 'win',
+}, {
+  ru: 'alt',
+  en: 'alt',
+  ruShift: 'alt',
+  enShift: 'alt',
+}, {
+  ru: 'space',
+  en: 'space',
+  ruShift: 'space',
+  enShift: 'space',
+}, {
+  ru: 'alt',
+  en: 'alt',
+  ruShift: 'alt',
+  enShift: 'alt',
+}, {
+  ru: 'ctrl',
+  en: 'ctrl',
+  ruShift: 'ctrl',
+  enShift: 'ctrl',
+}, {
+  ru: '←',
+  en: '←',
+  ruShift: '←',
+  enShift: '←',
+}, {
+  ru: '↓',
+  en: '↓',
+  ruShift: '↓',
+  enShift: '↓',
+}, {
+  ru: '→',
+  en: '→',
+  ruShift: '→',
+  enShift: '→',
+}];
+
+
+export default allButtonsArray;
