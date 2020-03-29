@@ -7,7 +7,7 @@ const keyboardBaseState = {
   uppercase: false,
 
   keyboardType() {
-    return `${this.language}${((this.uppercase) ? 'Shift' : '')}`;
+    return `${this.language}${((this.uppercase === true || this.uppercase === 'true') ? 'Shift' : '')}`;
   },
 
   changeLanguage() {
@@ -31,7 +31,7 @@ const keyboardBaseState = {
     <div class="keyboardState" id="keyboardState">
     language:${keyboardBaseState.language}, uppercase: ${keyboardBaseState.uppercase}.<br>
     Переключение -- ctrl + shift<br>
-    Специально сбрасываю alt, shift, ctrl, ибо не логично начинать с нажатыми 
+    Специально сбрасываю alt, shift, ctrl, ибо не логично начинать с нажатыми
     Клавиатура сохранит язык ввода (независимо от языка установленного в ОС)<br>
     Клавиатура сохранит регистр при перезагрузке (для удобства CapsLock оставляю подсвеченным)<br></div>`;
     this.saveKeyboardType();
