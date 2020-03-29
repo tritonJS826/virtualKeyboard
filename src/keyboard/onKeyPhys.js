@@ -8,7 +8,8 @@ function colorKeyAnim(id) {
   const isTab = (id === 'tab');
   const isSpace = (id === 'space');
   const isWin = (id === 'win');
-  if (id.length === 1 || isEnter || isBackspace || isTab || isSpace || isWin) {
+  const arrow = (id === '↑ ' || id === '← ' || id === '↓ ' || id === '→ ');
+  if (id.length === 1 || isEnter || isBackspace || isTab || isSpace || isWin || arrow) {
     key.classList.add('pressed');
     setTimeout(() => {
       key.classList.remove('pressed');
@@ -55,6 +56,7 @@ function notSimpleKey(id) {
     textarea.value += '\n';
   }
   if (id === 'Backspace') {
+    if (document.getElementById('textarea') === document.activeElement) return;
     textarea.value = textarea.value.slice(0, textarea.value.length - 1);
   }
   if (id === 'tab') {

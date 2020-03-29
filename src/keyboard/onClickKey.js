@@ -11,7 +11,8 @@ function colorKeyAnim() {
     const isTab = (id === 'tab');
     const isSpace = (id === 'space');
     const isWin = (id === 'win');
-    if (id.length === 1 || isEnter || isBackspace || isTab || isSpace || isWin) {
+    const arrow = (id === '↑ ' || id === '← ' || id === '↓ ' || id === '→ ');
+    if (id.length === 1 || isEnter || isBackspace || isTab || isSpace || isWin || arrow) {
       classList.add('pressed');
       setTimeout(() => {
         classList.remove('pressed');
