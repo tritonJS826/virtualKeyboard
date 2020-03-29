@@ -1,9 +1,7 @@
 import addStyles from './style';
-import allButtonsArray from './keyboard/allButtonsArray';
 import keyboardBaseState from './keyboard/keyboardState';
 import onClickKey from './keyboard/onClickKey';
 import clickKeyEmulate from './keyboard/onKeyPhys';
-
 
 // добавим пару блоков куда будем все рисовать
 document.body.innerHTML = `
@@ -18,13 +16,14 @@ document.body.innerHTML = `
 addStyles();
 
 
-const KEYBOARD = 'keyboard';
-keyboardBaseState.renderKeyboard('en', allButtonsArray, KEYBOARD);
+// загрузим данные, если были сохранены
+keyboardBaseState.loadKeyboardType();
+keyboardBaseState.renderState('keyboardState');
+// отрисуем нашу клаву
+keyboardBaseState.renderKeyboard();
 
 // обработаем клики
 onClickKey();
 
 // обработаем нажатия на клавиши
 clickKeyEmulate();
-
-// добавить сохранение состояния еще осталось

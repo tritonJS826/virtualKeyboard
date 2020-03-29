@@ -3,7 +3,11 @@ function addStyles() {
   style.innerHTML = `
 
   body {
-    padding: 20vh 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
     transition: all 0.5s;
   }
 
