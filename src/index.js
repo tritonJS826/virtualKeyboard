@@ -2,6 +2,7 @@ import addStyles from './style';
 import allButtonsArray from './keyboard/allButtonsArray';
 import keyboardBaseState from './keyboard/keyboardState';
 import onClickKey from './keyboard/onClickKey';
+import clickKeyEmulate from './keyboard/onKeyPhys';
 
 
 // добавим пару блоков куда будем все рисовать
@@ -20,8 +21,10 @@ addStyles();
 const KEYBOARD = 'keyboard';
 keyboardBaseState.renderKeyboard('en', allButtonsArray, KEYBOARD);
 
-
+// обработаем клики
 onClickKey();
 
-// добавить листенеры на клаву (физическую)
-// добавить сохранение состояния
+// обработаем нажатия на клавиши
+clickKeyEmulate();
+
+// добавить сохранение состояния еще осталось
