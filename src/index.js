@@ -17,7 +17,6 @@ addStyles();
 
 // загрузим данные, если были сохранены
 keyboardBaseState.loadKeyboardType();
-console.log(keyboardBaseState.keyboardType());
 keyboardBaseState.renderState('keyboardState');
 // отрисуем нашу клаву
 keyboardBaseState.renderKeyboard();
