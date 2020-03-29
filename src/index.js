@@ -24,4 +24,4 @@ keyboardBaseState.renderKeyboard('en', allButtonsArray, KEYBOARD);
 onClickKey();
 
 // добавить листенеры на клаву (физическую)
-// добавить переключение языка
+// добавить сохранение состояния

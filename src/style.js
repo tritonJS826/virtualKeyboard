@@ -54,7 +54,7 @@ function addStyles() {
     min-width:310px;
   }
 
-  .leftShift {
+  .ShiftLeft {
     min-width: 115px;
   }
 

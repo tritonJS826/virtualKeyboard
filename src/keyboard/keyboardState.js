@@ -7,7 +7,6 @@ const keyboardBaseState = {
   uppercase: false,
 
   keyboardType() {
-    console.log((this.language + ((this.uppercase) ? 'Shift' : '')));
     return (this.language + ((this.uppercase) ? 'Shift' : ''));
   },
 
