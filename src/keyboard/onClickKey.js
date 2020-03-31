@@ -102,21 +102,21 @@ function notSimpleKey() {
       changeStylePressed(id);
       if (isShiftRightPressed) {
         changeStylePressed(shiftRight);
-        return;
+        return null;
       }
       if (isControlLeftPressed) {
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed(controlLeft);
         keyboardBaseState.renderKeyboard();
-        return;
+        return null;
       }
       if (isControlRightPressed) {
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed(controlRight);
         keyboardBaseState.renderKeyboard();
-        return;
+        return null;
       }
       // если ничего другие shifts and contrls не нажаты
       changeUppercase();
@@ -132,21 +132,21 @@ function notSimpleKey() {
       changeStylePressed(id);
       if (isShiftLeftPressed) {
         changeStylePressed(shiftLeft);
-        return;
+        return null;
       }
       if (isControlLeftPressed) {
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed(controlLeft);
         keyboardBaseState.renderKeyboard();
-        return;
+        return null;
       }
       if (isControlRightPressed) {
         changeLanguage();
         changeStylePressed(id);
         changeStylePressed(controlRight);
         keyboardBaseState.renderKeyboard();
-        return;
+        return null;
       }
       // если никакие другие shifts and contrls не нажаты
       changeUppercase();

@@ -75,7 +75,7 @@ function notSimpleKey(id) {
     textarea.value += '\n';
   }
   if (id === backspace) {
-    if (textarea === document.activeElement) return;
+    if (textarea === document.activeElement) return null;
     textarea.value = textarea.value.slice(0, textarea.value.length - 1);
   }
   if (id === tab) {
@@ -99,21 +99,21 @@ function notSimpleKey(id) {
     changeStylePressed(id);
     if (isShiftRightPressed) {
       changeStylePressed(shiftRight);
-      return;
+      return null;
     }
     if (isControlLeftPressed) {
       changeLanguage();
       changeStylePressed(id);
       changeStylePressed(controlLeft);
       keyboardBaseState.renderKeyboard();
-      return;
+      return null;
     }
     if (isControlRightPressed) {
       changeLanguage();
       changeStylePressed(id);
       changeStylePressed(controlRight);
       keyboardBaseState.renderKeyboard();
-      return;
+       null;
     }
     // if other shifts and ctrls not pressed
     changeUppercase();
@@ -129,21 +129,21 @@ function notSimpleKey(id) {
     changeStylePressed(id);
     if (isShiftLeftPressed) {
       changeStylePressed(shiftLeft);
-      return;
+      return null;
     }
     if (isControlLeftPressed) {
       changeLanguage();
       changeStylePressed(id);
       changeStylePressed(controlLeft);
       keyboardBaseState.renderKeyboard();
-      return;
+      return null;
     }
     if (isControlRightPressed) {
       changeLanguage();
       changeStylePressed(id);
       changeStylePressed(controlRight);
       keyboardBaseState.renderKeyboard();
-      return;
+      return null;
     }
     // если никакие другие shifts and contrls не нажаты
     changeUppercase();
