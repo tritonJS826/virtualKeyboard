@@ -63,14 +63,16 @@ const keyboardBaseState = {
   },
 
   loadKeyboardType() {
-    const {
-      language,
-      uppercase,
-    } = localStorage.getItem('keyboardType');
-    this.language = language || this.language;
-    this.uppercase = uppercase || this.uppercase;
-    renderKeyboard(this.keyboardType(), allButtonsArray, 'keyboard');
-    if (this.uppercase === 'true') document.getElementById('capslock').classList.add('key__pressed');
+    if (localStorage.getItem('keyboardType')) {
+      const {
+        language,
+        uppercase,
+      } = localStorage.getItem('keyboardType');
+      this.language = language || this.language;
+      this.uppercase = uppercase || this.uppercase;
+      if (this.uppercase === 'true') document.getElementById('capslock').classList.add('key__pressed');
+      renderKeyboard(this.keyboardType(), allButtonsArray, 'keyboard');
+    }
   },
 };
 
