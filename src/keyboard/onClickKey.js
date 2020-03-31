@@ -1,5 +1,7 @@
 import keyboardBaseState from './keyboardState';
 
+const pressedModificator = 'key__pressed';
+
 function colorKeyAnim() {
   document.getElementById('keyboard').addEventListener('click', (event) => {
     const {
@@ -12,29 +14,34 @@ function colorKeyAnim() {
     const isSpace = (id === 'space');
     const isWin = (id === 'win');
     const arrow = (id === '↑ ' || id === '← ' || id === '↓ ' || id === '→ ');
-    if (id.length === 1 || isEnter || isBackspace || isTab || isSpace || isWin || arrow) {
-      classList.add('pressed');
+    const isKeyHasComplicateId = (isEnter || isBackspace || isTab || isSpace || isWin || arrow);
+    const isSimpleKeyOrDigit = (id.length === 1);
+
+    if (isSimpleKeyOrDigit || isKeyHasComplicateId) {
+      classList.add(pressedModificator);
       setTimeout(() => {
-        classList.remove('pressed');
+        classList.remove(pressedModificator);
       }, 500);
     }
   });
 }
 
 function printSimpleKey() {
-  document.getElementById('keyboard').addEventListener('click', (event) => {
-    if (event.target.id.length === 1) {
-      document.getElementById('textarea').value += event.target.innerText;
+  document.getElementById('keyboard').addEventListener('click', ({
+    target,
+  }) => {
+    if (target.id.length === 1) {
+      document.getElementById('textarea').value += target.innerText;
     }
   });
 }
 
 function changeStylePressed(id) {
-  const key = document.getElementById(id);
-  if (key.classList.contains('pressed')) {
-    key.classList.remove('pressed');
+  const keyClassList = document.getElementById(id).classList;
+  if (keyClassList.contains(pressedModificator)) {
+    keyClassList.remove(pressedModificator);
   } else {
-    key.classList.add('pressed');
+    keyClassList.add(pressedModificator);
   }
 }
 
@@ -50,50 +57,64 @@ function changeLanguage() {
 
 function notSimpleKey() {
   const textarea = document.getElementById('textarea');
-  document.getElementById('keyboard').addEventListener('click', (event) => {
-    const {
-      id,
-    } = event.target;
-    if (id === 'space') {
+  const space = 'space';
+  const enter = 'enter';
+  const backspace = 'Backspace';
+  const tab = 'tab';
+  const win = 'win';
+  const capsLock = 'capslock';
+  const shiftLeft = 'ShiftLeft';
+  const shiftRight = 'ShiftRight';
+  const controlLeft = 'ControlLeft';
+  const controlRight = 'ControlRight';
+  const leftAlt = 'leftAlt';
+  const rightAlt = 'rightAlt';
+  document.getElementById('keyboard').addEventListener('click', ({
+    target: { id },
+  }) => {
+    if (id === space) {
       textarea.value += ' ';
     }
-    if (id === 'enter') {
+    if (id === enter) {
       textarea.value += '\n';
     }
-    if (id === 'Backspace') {
+    if (id === backspace) {
       textarea.value = textarea.value.slice(0, textarea.value.length - 1);
     }
-    if (id === 'tab') {
+    if (id === tab) {
       textarea.value += '\t';
     }
-    if (id === 'win') {
+    if (id === win) {
       textarea.value += 'Что должно произойти?';
     }
-    if (id === 'capslock') {
+    if (id === capsLock) {
       changeStylePressed(id);
       changeUppercase();
       keyboardBaseState.renderKeyboard();
     }
-    if (id === 'ShiftLeft') {
-      const isShiftRightPressed = document.getElementById('ShiftRight').classList.contains('pressed');
-      const isControlLeftPressed = document.getElementById('ControlLeft').classList.contains('pressed');
-      const isControlRightPressed = document.getElementById('ControlRight').classList.contains('pressed');
+    if (id === shiftLeft) {
+      const isShiftRightPressed = document.getElementById(shiftRight)
+        .classList.contains(pressedModificator);
+      const isControlLeftPressed = document.getElementById(controlLeft)
+        .classList.contains(pressedModificator);
+      const isControlRightPressed = document.getElementById(controlRight)
+        .classList.contains(pressedModificator);
       changeStylePressed(id);
       if (isShiftRightPressed) {
-        changeStylePressed('ShiftRight');
+        changeStylePressed(shiftRight);
         return;
       }
       if (isControlLeftPressed) {
         changeLanguage();
         changeStylePressed(id);
-        changeStylePressed('ControlLeft');
+        changeStylePressed(controlLeft);
         keyboardBaseState.renderKeyboard();
         return;
       }
       if (isControlRightPressed) {
         changeLanguage();
         changeStylePressed(id);
-        changeStylePressed('ControlRight');
+        changeStylePressed(controlRight);
         keyboardBaseState.renderKeyboard();
         return;
       }
@@ -101,26 +122,29 @@ function notSimpleKey() {
       changeUppercase();
       keyboardBaseState.renderKeyboard();
     }
-    if (id === 'ShiftRight') {
-      const isShiftLeftPressed = document.getElementById('ShiftLeft').classList.contains('pressed');
-      const isControlLeftPressed = document.getElementById('ControlLeft').classList.contains('pressed');
-      const isControlRightPressed = document.getElementById('ControlRight').classList.contains('pressed');
+    if (id === shiftRight) {
+      const isShiftLeftPressed = document.getElementById(shiftLeft)
+        .classList.contains(pressedModificator);
+      const isControlLeftPressed = document.getElementById(controlLeft)
+        .classList.contains(pressedModificator);
+      const isControlRightPressed = document.getElementById(controlRight)
+        .classList.contains(pressedModificator);
       changeStylePressed(id);
       if (isShiftLeftPressed) {
-        changeStylePressed('ShiftLeft');
+        changeStylePressed(shiftLeft);
         return;
       }
       if (isControlLeftPressed) {
         changeLanguage();
         changeStylePressed(id);
-        changeStylePressed('ControlLeft');
+        changeStylePressed(controlLeft);
         keyboardBaseState.renderKeyboard();
         return;
       }
       if (isControlRightPressed) {
         changeLanguage();
         changeStylePressed(id);
-        changeStylePressed('ControlRight');
+        changeStylePressed(controlRight);
         keyboardBaseState.renderKeyboard();
         return;
       }
@@ -128,61 +152,69 @@ function notSimpleKey() {
       changeUppercase();
       keyboardBaseState.renderKeyboard();
     }
-    if (id === 'ControlLeft') {
-      const isControlRightPressed = document.getElementById('ControlRight').classList.contains('pressed');
-      const isShiftLeftPressed = document.getElementById('ShiftLeft').classList.contains('pressed');
-      const isShiftRightPressed = document.getElementById('ShiftRight').classList.contains('pressed');
+    if (id === controlLeft) {
+      const isControlRightPressed = document.getElementById(controlRight)
+        .classList.contains(pressedModificator);
+      const isShiftLeftPressed = document.getElementById(shiftLeft)
+        .classList.contains(pressedModificator);
+      const isShiftRightPressed = document.getElementById(shiftRight)
+        .classList.contains(pressedModificator);
       changeStylePressed(id);
       if (isControlRightPressed) {
-        changeStylePressed('ControlRight');
+        changeStylePressed(controlRight);
       }
       if (isShiftLeftPressed) {
         changeLanguage();
         changeUppercase();
         changeStylePressed(id);
-        changeStylePressed('ShiftLeft');
+        changeStylePressed(shiftLeft);
         keyboardBaseState.renderKeyboard();
       }
       if (isShiftRightPressed) {
         changeLanguage();
         changeUppercase();
         changeStylePressed(id);
-        changeStylePressed('ShiftRight');
+        changeStylePressed(shiftRight);
         keyboardBaseState.renderKeyboard();
       }
     }
-    if (id === 'ControlRight') {
-      const isControlLeftPressed = document.getElementById('ControlLeft').classList.contains('pressed');
-      const isShiftLeftPressed = document.getElementById('ShiftLeft').classList.contains('pressed');
-      const isShiftRightPressed = document.getElementById('ShiftRight').classList.contains('pressed');
+    if (id === controlRight) {
+      const isControlLeftPressed = document.getElementById(controlLeft)
+        .classList.contains(pressedModificator);
+      const isShiftLeftPressed = document.getElementById(shiftLeft)
+        .classList.contains(pressedModificator);
+      const isShiftRightPressed = document.getElementById(shiftRight)
+        .classList.contains(pressedModificator);
       changeStylePressed(id);
       if (isControlLeftPressed) {
-        changeStylePressed('ControlLeft');
+        changeStylePressed(controlLeft);
       }
       if (isShiftLeftPressed) {
         changeLanguage();
         changeLanguage();
         changeStylePressed(id);
-        changeStylePressed('ShiftLeft');
+        changeStylePressed(shiftLeft);
         keyboardBaseState.renderKeyboard();
       }
       if (isShiftRightPressed) {
         changeLanguage();
         changeLanguage();
         changeStylePressed(id);
-        changeStylePressed('ShiftRight');
+        changeStylePressed(shiftRight);
         keyboardBaseState.renderKeyboard();
       }
     }
-    if (id === 'leftAlt') {
-      const isRightAltPressed = document.getElementById('rightAlt').classList.contains('pressed');
+    if (id === leftAlt) {
+      const isRightAltPressed = document.getElementById(rightAlt)
+        .classList.contains(pressedModificator);
       changeStylePressed(id);
-      if (isRightAltPressed) changeStylePressed('rightAlt');
+      if (isRightAltPressed) changeStylePressed(rightAlt);
     }
-    if (id === 'rightAlt') {
-      const isLeftAltPressed = document.getElementById('leftAlt').classList.contains('pressed');
+    if (id === rightAlt) {
+      const isLeftAltPressed = document.getElementById(leftAlt)
+        .classList.contains(pressedModificator);
       changeStylePressed(id);
-      if (isLeftAltPressed) changeStylePressed('lefttAlt');
+      if (isLeftAltPressed) changeStylePressed(leftAlt);
     }
   });
 }

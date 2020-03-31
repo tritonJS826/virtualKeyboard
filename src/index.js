@@ -1,9 +1,9 @@
-import addStyles from './style';
+import 'normalize.css';
+import './style.css';
 import keyboardBaseState from './keyboard/keyboardState';
 import onClickKey from './keyboard/onClickKey';
 import clickKeyEmulate from './keyboard/onKeyPhys';
 
-// добавим пару блоков куда будем все рисовать
 document.body.innerHTML = `
   <div id="input--field" class="input--field">
     <div class="keyboardState" id="keyboardState">language:${keyboardBaseState.language}, uppercase: ${keyboardBaseState.uppercase}. Переключение -- ctrl + shift</div>
@@ -12,17 +12,11 @@ document.body.innerHTML = `
   <div id="keyboard" class="keyboard"></div>
   ${document.body.innerHTML}`;
 
-// стили нормально не подключились, так пока сделаем
-addStyles();
 
-// загрузим данные, если были сохранены
 keyboardBaseState.loadKeyboardType();
 keyboardBaseState.renderState('keyboardState');
-// отрисуем нашу клаву
 keyboardBaseState.renderKeyboard();
-
-// обработаем клики
+// handle clicks
 onClickKey();
-
-// обработаем нажатия на клавиши
+// handle keypresses
 clickKeyEmulate();

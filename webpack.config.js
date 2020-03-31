@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 module.exports = {
@@ -31,33 +31,19 @@ module.exports = {
           use: ['css-loader'],
         }),
       },
-      {
-        test: /\.(png|jp(e*)g|svg)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8000,
-            name: 'images/[hash]-[name].[ext]',
-          },
-        }, ],
-      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
-      title: 'My Awesome application',
-      myPageHeader: 'Hello World',
+      title: 'virtualKeyboard',
+      myPageHeader: 'virtualKeyboard',
       template: './src/index.html',
       filename: 'index.html',
     }),
     new ExtractTextPlugin({
       filename: 'style.css',
     }),
-    new CopyWebpackPlugin([{
-      from: './src/images',
-      to: 'images',
-    }]),
   ],
   devServer: {
     contentBase: './src/public',
