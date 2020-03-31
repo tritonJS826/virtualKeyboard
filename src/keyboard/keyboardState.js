@@ -1,6 +1,7 @@
 import renderKeyboard from './renderKeyboard';
 import allButtonsArray from './allButtonsArray';
 
+
 const enLanguage = 'en';
 const ruLanguage = 'ru';
 const baseUppercase = false;
@@ -14,7 +15,7 @@ const keyboardBaseState = {
       language,
       uppercase,
     } = this;
-    const isUppercase = (uppercase === true || uppercase === 'true');
+    const isUppercase = (uppercase === true);
     return `${language}${isUppercase ? 'Shift' : ''}`;
   },
 
@@ -27,11 +28,7 @@ const keyboardBaseState = {
   },
 
   changeUppercase() {
-    if (this.uppercase === true || this.uppercase === 'true') {
-      this.uppercase = false;
-    } else {
-      this.uppercase = true;
-    }
+    this.uppercase = !this.uppercase;
   },
 
   renderState(where) {
@@ -56,22 +53,29 @@ const keyboardBaseState = {
   },
 
   saveKeyboardType() {
-    localStorage.setItem('keyboardType', {
-      language: this.language,
-      uppercase: this.uppercase,
-    });
+    const {
+      language,
+      uppercase,
+    } = this;
+    localStorage.setItem('keyboardType', JSON.stringify({
+      language,
+      uppercase,
+    }));
   },
 
   loadKeyboardType() {
+    // console.log(this.language);
     if (localStorage.getItem('keyboardType')) {
       const {
         language,
         uppercase,
-      } = localStorage.getItem('keyboardType');
+      } = JSON.parse(localStorage.getItem('keyboardType'));
       this.language = language || this.language;
       this.uppercase = uppercase || this.uppercase;
-      if (this.uppercase === 'true') document.getElementById('capslock').classList.add('key__pressed');
       renderKeyboard(this.keyboardType(), allButtonsArray, 'keyboard');
+      if (this.uppercase === true) {
+        document.getElementById('capslock').classList.add('key__pressed');
+      }
     }
   },
 };

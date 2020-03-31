@@ -70,7 +70,7 @@ function notSimpleKey() {
   const leftAlt = 'leftAlt';
   const rightAlt = 'rightAlt';
   document.getElementById('keyboard').addEventListener('click', ({
-    target: id,
+    target: { id },
   }) => {
     if (id === space) {
       textarea.value += ' ';

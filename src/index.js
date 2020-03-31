@@ -4,7 +4,6 @@ import keyboardBaseState from './keyboard/keyboardState';
 import onClickKey from './keyboard/onClickKey';
 import clickKeyEmulate from './keyboard/onKeyPhys';
 
-// добавим пару блоков куда будем все рисовать
 document.body.innerHTML = `
   <div id="input--field" class="input--field">
     <div class="keyboardState" id="keyboardState">language:${keyboardBaseState.language}, uppercase: ${keyboardBaseState.uppercase}. Переключение -- ctrl + shift</div>
