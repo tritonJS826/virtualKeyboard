@@ -9,7 +9,11 @@ function colorKeyAnim(id) {
   const isSpace = (id === 'space');
   const isWin = (id === 'win');
   const arrow = (id === '↑ ' || id === '← ' || id === '↓ ' || id === '→ ');
-  if (id.length === 1 || isEnter || isBackspace || isTab || isSpace || isWin || arrow) {
+  const isKeyHasComplicateId = (isEnter || isBackspace || isTab || isSpace || isWin || arrow);
+  const isSimpleKeyOrDigit = (id.length === 1);
+
+  if (isSimpleKeyOrDigit || isKeyHasComplicateId) {
+    // remove setTimeout -> animation
     key.classList.add('key__pressed');
     setTimeout(() => {
       key.classList.remove('key__pressed');
@@ -23,7 +27,7 @@ function printSimpleKey(id) {
   if (id.length === 1) {
     textarea.value += document.getElementById(id).innerText;
   }
-  if (id.length === 1 && document.getElementById('textarea') === document.activeElement) {
+  if (id.length === 1 && textarea === document.activeElement) {
     textarea.value = textarea.value.slice(0, textarea.value.length - 1);
   }
 }

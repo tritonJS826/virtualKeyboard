@@ -13,14 +13,10 @@ document.body.innerHTML = `
   ${document.body.innerHTML}`;
 
 
-// загрузим данные, если были сохранены
 keyboardBaseState.loadKeyboardType();
 keyboardBaseState.renderState('keyboardState');
-// отрисуем нашу клаву
 keyboardBaseState.renderKeyboard();
-
-// обработаем клики
+// handle clicks
 onClickKey();
-
-// обработаем нажатия на клавиши
+// handle keypresses
 clickKeyEmulate();
