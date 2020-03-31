@@ -1,20 +1,22 @@
 import renderKeyboard from './renderKeyboard';
 import allButtonsArray from './allButtonsArray';
 
+const baseLanguage = 'en';
+const baseUppercase = false;
 
 const keyboardBaseState = {
-  language: 'en',
-  uppercase: false,
+  language: baseLanguage,
+  uppercase: baseUppercase,
 
   keyboardType() {
     return `${this.language}${((this.uppercase === true || this.uppercase === 'true') ? 'Shift' : '')}`;
   },
 
   changeLanguage() {
-    if (this.language === 'en') {
+    if (this.language === baseLanguage) {
       this.language = 'ru';
     } else {
-      this.language = 'en';
+      this.language = baseLanguage;
     }
   },
 
