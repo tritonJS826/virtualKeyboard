@@ -1,11 +1,75 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  transition: all 0.5s;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  transition: all 0.5s;
+}
+
+.input--field {
+  width:700px;
+}
+
+.textarea {
+  width: 99%;
+  height: 250px;
   background: black;
+  color:white;
+  font-size: 20pt;
 }
 
 .keyboard {
-
+  display: flex;
+  width: 700px;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  background:darkgrey;
 }
 
 .key {
-  background:blue;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color:white;
+  height: 30px;
+  margin: 2px;
+  min-width:41px;
+  border-radius:3px;
+}
+
+.key__enter {
+  min-width: 90px;
+}
+
+.key__shift {
+  min-width:100px;
+}
+.key__space {
+  min-width:310px;
+}
+
+.key__ShiftLeft {
+  min-width: 115px;
+}
+
+.key__pressed {
+  background: orange;
+}
+@keyframes onpress {
+from {
+  background:orange;
+}
+
+to {
+  background:black;
+}
 }

@@ -31,16 +31,6 @@ module.exports = {
           use: ['css-loader'],
         }),
       },
-      {
-        test: /\.(png|jp(e*)g|svg)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8000,
-            name: 'images/[hash]-[name].[ext]',
-          },
-        }, ],
-      },
     ],
   },
   plugins: [
@@ -54,10 +44,6 @@ module.exports = {
     new ExtractTextPlugin({
       filename: 'style.css',
     }),
-    new CopyWebpackPlugin([{
-      from: './src/images',
-      to: 'images',
-    }]),
   ],
   devServer: {
     contentBase: './src/public',

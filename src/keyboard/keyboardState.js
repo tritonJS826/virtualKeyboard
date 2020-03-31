@@ -40,10 +40,10 @@ const keyboardBaseState = {
   // запомним какие были нажаты, перересуем клаву, сделаем нажатыми те, что были
   renderKeyboard(keyboardType = this.keyboardType()) {
     const pressedKeysId = [];
-    document.querySelectorAll('.pressed').forEach((el) => pressedKeysId.push(el.id));
+    document.querySelectorAll('.key__pressed').forEach((el) => pressedKeysId.push(el.id));
     renderKeyboard(keyboardType, allButtonsArray, 'keyboard');
     pressedKeysId.forEach((keyId) => {
-      document.getElementById(keyId).classList.add('pressed');
+      document.getElementById(keyId).classList.add('key__pressed');
     });
   },
 
@@ -56,7 +56,7 @@ const keyboardBaseState = {
     this.language = localStorage.getItem('language') ? localStorage.getItem('language') : this.language;
     this.uppercase = (localStorage.getItem('uppercase')) ? localStorage.getItem('uppercase') : this.uppercase;
     renderKeyboard(this.keyboardType(), allButtonsArray, 'keyboard');
-    if (this.uppercase === 'true') document.getElementById('capslock').classList.add('pressed');
+    if (this.uppercase === 'true') document.getElementById('capslock').classList.add('key__pressed');
   },
 };
 

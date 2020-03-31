@@ -1,4 +1,4 @@
-import addStyles from './style';
+import './style.css';
 import keyboardBaseState from './keyboard/keyboardState';
 import onClickKey from './keyboard/onClickKey';
 import clickKeyEmulate from './keyboard/onKeyPhys';
@@ -12,12 +12,9 @@ document.body.innerHTML = `
   <div id="keyboard" class="keyboard"></div>
   ${document.body.innerHTML}`;
 
-// стили нормально не подключились, так пока сделаем
-addStyles();
 
 // загрузим данные, если были сохранены
 keyboardBaseState.loadKeyboardType();
-console.log(keyboardBaseState.keyboardType());
 keyboardBaseState.renderState('keyboardState');
 // отрисуем нашу клаву
 keyboardBaseState.renderKeyboard();

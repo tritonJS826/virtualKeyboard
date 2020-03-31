@@ -10,9 +10,9 @@ function colorKeyAnim(id) {
   const isWin = (id === 'win');
   const arrow = (id === '↑ ' || id === '← ' || id === '↓ ' || id === '→ ');
   if (id.length === 1 || isEnter || isBackspace || isTab || isSpace || isWin || arrow) {
-    key.classList.add('pressed');
+    key.classList.add('key__pressed');
     setTimeout(() => {
-      key.classList.remove('pressed');
+      key.classList.remove('key__pressed');
     }, 500);
   }
 }
@@ -30,10 +30,10 @@ function printSimpleKey(id) {
 
 function changeStylePressed(id) {
   const key = document.getElementById(id);
-  if (key.classList.contains('pressed')) {
-    key.classList.remove('pressed');
+  if (key.classList.contains('key__pressed')) {
+    key.classList.remove('key__pressed');
   } else {
-    key.classList.add('pressed');
+    key.classList.add('key__pressed');
   }
 }
 
@@ -71,9 +71,9 @@ function notSimpleKey(id) {
     keyboardBaseState.renderKeyboard();
   }
   if (id === 'ShiftLeft') {
-    const isShiftRightPressed = document.getElementById('ShiftRight').classList.contains('pressed');
-    const isControlLeftPressed = document.getElementById('ControlLeft').classList.contains('pressed');
-    const isControlRightPressed = document.getElementById('ControlRight').classList.contains('pressed');
+    const isShiftRightPressed = document.getElementById('ShiftRight').classList.contains('key__pressed');
+    const isControlLeftPressed = document.getElementById('ControlLeft').classList.contains('key__pressed');
+    const isControlRightPressed = document.getElementById('ControlRight').classList.contains('key__pressed');
     changeStylePressed(id);
     if (isShiftRightPressed) {
       changeStylePressed('ShiftRight');
@@ -98,9 +98,9 @@ function notSimpleKey(id) {
     keyboardBaseState.renderKeyboard();
   }
   if (id === 'ShiftRight') {
-    const isShiftLeftPressed = document.getElementById('ShiftLeft').classList.contains('pressed');
-    const isControlLeftPressed = document.getElementById('ControlLeft').classList.contains('pressed');
-    const isControlRightPressed = document.getElementById('ControlRight').classList.contains('pressed');
+    const isShiftLeftPressed = document.getElementById('ShiftLeft').classList.contains('key__pressed');
+    const isControlLeftPressed = document.getElementById('ControlLeft').classList.contains('key__pressed');
+    const isControlRightPressed = document.getElementById('ControlRight').classList.contains('key__pressed');
     changeStylePressed(id);
     if (isShiftLeftPressed) {
       changeStylePressed('ShiftLeft');
@@ -125,9 +125,9 @@ function notSimpleKey(id) {
     keyboardBaseState.renderKeyboard();
   }
   if (id === 'ControlLeft') {
-    const isControlRightPressed = document.getElementById('ControlRight').classList.contains('pressed');
-    const isShiftLeftPressed = document.getElementById('ShiftLeft').classList.contains('pressed');
-    const isShiftRightPressed = document.getElementById('ShiftRight').classList.contains('pressed');
+    const isControlRightPressed = document.getElementById('ControlRight').classList.contains('key__pressed');
+    const isShiftLeftPressed = document.getElementById('ShiftLeft').classList.contains('key__pressed');
+    const isShiftRightPressed = document.getElementById('ShiftRight').classList.contains('key__pressed');
     changeStylePressed(id);
     if (isControlRightPressed) {
       changeStylePressed('ControlRight');
@@ -148,9 +148,9 @@ function notSimpleKey(id) {
     }
   }
   if (id === 'ControlRight') {
-    const isControlLeftPressed = document.getElementById('ControlLeft').classList.contains('pressed');
-    const isShiftLeftPressed = document.getElementById('ShiftLeft').classList.contains('pressed');
-    const isShiftRightPressed = document.getElementById('ShiftRight').classList.contains('pressed');
+    const isControlLeftPressed = document.getElementById('ControlLeft').classList.contains('key__pressed');
+    const isShiftLeftPressed = document.getElementById('ShiftLeft').classList.contains('key__pressed');
+    const isShiftRightPressed = document.getElementById('ShiftRight').classList.contains('key__pressed');
     changeStylePressed(id);
     if (isControlLeftPressed) {
       changeStylePressed('ControlLeft');
@@ -171,12 +171,12 @@ function notSimpleKey(id) {
     }
   }
   if (id === 'leftAlt') {
-    const isRightAltPressed = document.getElementById('rightAlt').classList.contains('pressed');
+    const isRightAltPressed = document.getElementById('rightAlt').classList.contains('key__pressed');
     changeStylePressed(id);
     if (isRightAltPressed) changeStylePressed('rightAlt');
   }
   if (id === 'rightAlt') {
-    const isLeftAltPressed = document.getElementById('leftAlt').classList.contains('pressed');
+    const isLeftAltPressed = document.getElementById('leftAlt').classList.contains('key__pressed');
     changeStylePressed(id);
     if (isLeftAltPressed) changeStylePressed('lefttAlt');
   }
