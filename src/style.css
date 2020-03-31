@@ -38,13 +38,13 @@ body {
   min-width:41px;
 }
 
-.enter {
+.key__enter {
   min-width: 90px;
 }
 
-.shift {
+.key__shift {
   min-width:100px;
 }
-.space {
+.key__space {
   min-width:310px;
 }
