@@ -5,6 +5,7 @@ import {
   renderKeyEnShift,
 } from './key/key';
 
+
 function renderKeyboard(param, arr, root) {
   document.getElementById(root).innerHTML = '';
   if (param === 'renderKeyRu') {
