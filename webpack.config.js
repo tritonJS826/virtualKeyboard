@@ -46,18 +46,14 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
-      title: 'My Awesome application',
-      myPageHeader: 'Hello World',
+      title: 'virtualKeyboard',
+      myPageHeader: 'virtualKeyboard',
       template: './src/index.html',
       filename: 'index.html',
     }),
     new ExtractTextPlugin({
-      filename: 'style.css',
+      filename: './src/style.css',
     }),
-    new CopyWebpackPlugin([{
-      from: './src/images',
-      to: 'images',
-    }]),
   ],
   devServer: {
     contentBase: './src/public',

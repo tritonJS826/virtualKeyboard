@@ -14,7 +14,7 @@ document.body.innerHTML = `
   <div id="keyboard" class="keyboard"></div>
   ${document.body.innerHTML}`;
 
-// стили нормально не подключились, так пока сделаем
+
 addStyles();
 
 
