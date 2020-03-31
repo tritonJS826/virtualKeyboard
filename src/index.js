@@ -1,3 +1,4 @@
+import 'normalize.css';
 import './style.css';
 import keyboardBaseState from './keyboard/keyboardState';
 import onClickKey from './keyboard/onClickKey';
