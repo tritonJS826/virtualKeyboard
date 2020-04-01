@@ -5,7 +5,6 @@ const pressedModificator = 'key__pressed';
 
 function colorKeyAnim(id) {
   const key = document.getElementById(id);
-  console.log(document.getElementById('↑'));
   const isEnter = (id === 'enter');
   const isBackspace = (id === 'Backspace');
   const isTab = (id === 'tab');
