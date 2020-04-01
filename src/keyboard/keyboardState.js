@@ -43,7 +43,7 @@ const keyboardBaseState = {
   },
 
   renderKeyboard(keyboardType = this.keyboardType()) {
-    const elems = document.querySelectorAll('.key__pressed');
+    const elems = Array.from(document.querySelectorAll('.key__pressed'));
     const pressedKeysId = elems.map((el) => el.id);
     renderKeyboard(keyboardType, allButtonsArray, 'keyboard');
     pressedKeysId.forEach((keyId) => {

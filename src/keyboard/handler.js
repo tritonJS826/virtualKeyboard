@@ -140,7 +140,7 @@ function notSimpleKey(id) {
       changePairStyleLang(id, controlRight);
       return;
     }
-    // если никакие другие shifts and contrls не нажаты
+    // if other shifts and ctrls not pressed
     changeUppercase();
     keyboardBaseState.renderKeyboard();
   }
