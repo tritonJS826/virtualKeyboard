@@ -363,7 +363,7 @@ const allButtonsArray = [{
   ruShift: ',',
   enShift: '?',
 }, {
-  id: '↑ ',
+  id: 'arrow↑',
   code: 'ArrowUp',
   ru: '↑',
   en: '↑',
@@ -419,21 +419,21 @@ const allButtonsArray = [{
   ruShift: 'ctrl',
   enShift: 'ctrl',
 }, {
-  id: '← ',
+  id: 'arrow←',
   code: 'ArrowLeft',
   ru: '←',
   en: '←',
   ruShift: '←',
   enShift: '←',
 }, {
-  id: '↓ ',
+  id: 'arrow↓',
   code: 'ArrowDown',
   ru: '↓',
   en: '↓',
   ruShift: '↓',
   enShift: '↓',
 }, {
-  id: '→ ',
+  id: 'arrow→',
   code: 'ArrowRight',
   ru: '→',
   en: '→',

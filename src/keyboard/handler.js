@@ -5,18 +5,18 @@ const pressedModificator = 'key__pressed';
 
 function colorKeyAnim(id) {
   const key = document.getElementById(id);
+  console.log(document.getElementById('↑'));
   const isEnter = (id === 'enter');
   const isBackspace = (id === 'Backspace');
   const isTab = (id === 'tab');
   const isSpace = (id === 'space');
   const isWin = (id === 'win');
-  const arrow = (id === '↑ ' || id === '← ' || id === '↓ ' || id === '→ ');
+  const arrow = (id === 'arrow↑' || id === 'arrow←' || id === 'arrow↓' || id === 'arrow→');
   const isKeyHasComplicateId = (isEnter || isBackspace || isTab || isSpace || isWin || arrow);
   const isSimpleKeyOrDigit = (id.length === 1);
 
   if (isSimpleKeyOrDigit || isKeyHasComplicateId) {
     key.animate([
-      // keyframes
       {
         background: 'orange',
       },
@@ -24,7 +24,6 @@ function colorKeyAnim(id) {
         background: 'black',
       },
     ], {
-      // timing options
       duration: 1000,
       iterations: 1,
     });
