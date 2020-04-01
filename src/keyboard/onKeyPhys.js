@@ -54,6 +54,13 @@ function changeLanguage() {
   keyboardBaseState.renderState('keyboardState');
 }
 
+function pairKeysChange(firstKey, secondKey) {
+  changeLanguage();
+  changeStylePressed(firstKey);
+  changeStylePressed(secondKey);
+  keyboardBaseState.renderKeyboard();
+}
+
 function notSimpleKey(id) {
   const textarea = document.getElementById('textarea');
   const space = 'space';
@@ -102,17 +109,11 @@ function notSimpleKey(id) {
       return;
     }
     if (isControlLeftPressed) {
-      changeLanguage();
-      changeStylePressed(id);
-      changeStylePressed(controlLeft);
-      keyboardBaseState.renderKeyboard();
+      pairKeysChange(id, controlLeft);
       return;
     }
     if (isControlRightPressed) {
-      changeLanguage();
-      changeStylePressed(id);
-      changeStylePressed(controlRight);
-      keyboardBaseState.renderKeyboard();
+      pairKeysChange(id, controlRight);
       return;
     }
     // if other shifts and ctrls not pressed
@@ -132,17 +133,11 @@ function notSimpleKey(id) {
       return;
     }
     if (isControlLeftPressed) {
-      changeLanguage();
-      changeStylePressed(id);
-      changeStylePressed(controlLeft);
-      keyboardBaseState.renderKeyboard();
+      pairKeysChange(id, controlLeft);
       return;
     }
     if (isControlRightPressed) {
-      changeLanguage();
-      changeStylePressed(id);
-      changeStylePressed(controlRight);
-      keyboardBaseState.renderKeyboard();
+      pairKeysChange(id, controlRight);
       return;
     }
     // если никакие другие shifts and contrls не нажаты
@@ -161,18 +156,12 @@ function notSimpleKey(id) {
       changeStylePressed(controlRight);
     }
     if (isShiftLeftPressed) {
-      changeLanguage();
       changeUppercase();
-      changeStylePressed(id);
-      changeStylePressed(shiftLeft);
-      keyboardBaseState.renderKeyboard();
+      pairKeysChange(id, shiftLeft);
     }
     if (isShiftRightPressed) {
-      changeLanguage();
       changeUppercase();
-      changeStylePressed(id);
-      changeStylePressed(shiftRight);
-      keyboardBaseState.renderKeyboard();
+      pairKeysChange(id, shiftRight);
     }
   }
   if (id === controlRight) {
@@ -195,6 +184,7 @@ function notSimpleKey(id) {
     }
     if (isShiftRightPressed) {
       changeLanguage();
+      pairKeysChange(id, shiftRight);
       changeLanguage();
       changeStylePressed(id);
       changeStylePressed(shiftRight);
