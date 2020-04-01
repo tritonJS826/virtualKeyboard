@@ -43,10 +43,8 @@ const keyboardBaseState = {
   },
 
   renderKeyboard(keyboardType = this.keyboardType()) {
-    const elems = document.querySelectorAll('.pressed');
-    const pressedKeysId = [].map.call(elems, ((el) => el.id));
-    // const pressedKeysId = [];
-    // document.querySelectorAll('.key__pressed').forEach((el) => pressedKeysId.push(el.id));
+    const elems = document.querySelectorAll('.key__pressed');
+    const pressedKeysId = elems.map((el) => el.id);
     renderKeyboard(keyboardType, allButtonsArray, 'keyboard');
     pressedKeysId.forEach((keyId) => {
       document.getElementById(keyId).classList.add('key__pressed');
@@ -65,7 +63,6 @@ const keyboardBaseState = {
   },
 
   loadKeyboardType() {
-    // console.log(this.language);
     if (localStorage.getItem('keyboardType')) {
       const {
         language,
