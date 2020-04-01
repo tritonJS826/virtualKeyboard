@@ -42,9 +42,10 @@ const keyboardBaseState = {
     this.saveKeyboardType();
   },
 
-  // запомним какие были нажаты, перересуем клаву, сделаем нажатыми те, что были
   renderKeyboard(keyboardType = this.keyboardType()) {
-    const pressedKeysId = document.querySelectorAll('.pressed').map((el) => el.id);
+    const elems = document.querySelectorAll('.pressed');
+    const pressedKeysId = [].map.call(elems, ((el) => el.id));
+    // const pressedKeysId = [];
     // document.querySelectorAll('.key__pressed').forEach((el) => pressedKeysId.push(el.id));
     renderKeyboard(keyboardType, allButtonsArray, 'keyboard');
     pressedKeysId.forEach((keyId) => {
