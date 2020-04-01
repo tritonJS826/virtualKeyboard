@@ -199,19 +199,27 @@ function notSimpleKey(id) {
   }
 }
 
+function handlerKeyAndClick(id) {
+  colorKeyAnim(id);
+  printSimpleKey(id);
+  notSimpleKey(id);
+}
 
-function clickKeyEmulate() {
+function keyHandler() {
   document.addEventListener('keydown', ({
     code,
   }) => {
     const {
       id,
     } = allButtonsArray.find((el) => el.code === code);
-    colorKeyAnim(id);
-    printSimpleKey(id);
-    notSimpleKey(id);
+    handlerKeyAndClick(id);
   });
 }
 
+function clickHandler() {
+  document.getElementById('keyboard').addEventListener('click', ({ target: { id } }) => {
+    handlerKeyAndClick(id);
+  });
+}
 
-export default clickKeyEmulate;
+export { keyHandler, clickHandler };

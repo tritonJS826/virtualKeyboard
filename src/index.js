@@ -1,8 +1,8 @@
 import 'normalize.css';
 import './style.css';
 import keyboardBaseState from './keyboard/keyboardState';
-import onClickKey from './keyboard/onClickKey';
-import clickKeyEmulate from './keyboard/onKeyPhys';
+// import onClickKey from './keyboard/onClickKey';
+import { keyHandler, clickHandler } from './keyboard/handler';
 
 document.body.innerHTML = `
   <div id="input--field" class="input--field">
@@ -16,7 +16,7 @@ document.body.innerHTML = `
 keyboardBaseState.loadKeyboardType();
 keyboardBaseState.renderState('keyboardState');
 keyboardBaseState.renderKeyboard();
-// handle clicks
-onClickKey();
-// handle keypresses
-clickKeyEmulate();
+
+
+keyHandler();
+clickHandler();
