@@ -54,10 +54,10 @@ function changeLanguage() {
   keyboardBaseState.renderState('keyboardState');
 }
 
-function pairKeysChange(firstKey, secondKey) {
+function changePairStyleLang(firstId, secondId) {
   changeLanguage();
-  changeStylePressed(firstKey);
-  changeStylePressed(secondKey);
+  changeStylePressed(firstId);
+  changeStylePressed(secondId);
   keyboardBaseState.renderKeyboard();
 }
 
@@ -109,11 +109,11 @@ function notSimpleKey(id) {
       return;
     }
     if (isControlLeftPressed) {
-      pairKeysChange(id, controlLeft);
+      changePairStyleLang(id, controlLeft);
       return;
     }
     if (isControlRightPressed) {
-      pairKeysChange(id, controlRight);
+      changePairStyleLang(id, controlRight);
       return;
     }
     // if other shifts and ctrls not pressed
@@ -133,11 +133,11 @@ function notSimpleKey(id) {
       return;
     }
     if (isControlLeftPressed) {
-      pairKeysChange(id, controlLeft);
+      changePairStyleLang(id, controlLeft);
       return;
     }
     if (isControlRightPressed) {
-      pairKeysChange(id, controlRight);
+      changePairStyleLang(id, controlRight);
       return;
     }
     // если никакие другие shifts and contrls не нажаты
@@ -157,11 +157,12 @@ function notSimpleKey(id) {
     }
     if (isShiftLeftPressed) {
       changeUppercase();
-      pairKeysChange(id, shiftLeft);
+      changePairStyleLang(id, shiftLeft);
+      return;
     }
     if (isShiftRightPressed) {
       changeUppercase();
-      pairKeysChange(id, shiftRight);
+      changePairStyleLang(id, shiftRight);
     }
   }
   if (id === controlRight) {
@@ -176,19 +177,12 @@ function notSimpleKey(id) {
       changeStylePressed(controlLeft);
     }
     if (isShiftLeftPressed) {
-      changeLanguage();
-      changeLanguage();
-      changeStylePressed(id);
-      changeStylePressed(shiftLeft);
-      keyboardBaseState.renderKeyboard();
+      changeUppercase();
+      changePairStyleLang(id, shiftLeft);
     }
     if (isShiftRightPressed) {
-      changeLanguage();
-      pairKeysChange(id, shiftRight);
-      changeLanguage();
-      changeStylePressed(id);
-      changeStylePressed(shiftRight);
-      keyboardBaseState.renderKeyboard();
+      changeUppercase();
+      changePairStyleLang(id, shiftRight);
     }
   }
   if (id === leftAlt) {
