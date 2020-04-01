@@ -1,7 +1,6 @@
 import 'normalize.css';
 import './style.css';
 import keyboardBaseState from './keyboard/keyboardState';
-// import onClickKey from './keyboard/onClickKey';
 import { keyHandler, clickHandler } from './keyboard/handler';
 
 document.body.innerHTML = `
