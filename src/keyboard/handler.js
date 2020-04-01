@@ -15,11 +15,19 @@ function colorKeyAnim(id) {
   const isSimpleKeyOrDigit = (id.length === 1);
 
   if (isSimpleKeyOrDigit || isKeyHasComplicateId) {
-    // remove setTimeout -> animation
-    key.classList.add(pressedModificator);
-    setTimeout(() => {
-      key.classList.remove(pressedModificator);
-    }, 500);
+    key.animate([
+      // keyframes
+      {
+        background: 'orange',
+      },
+      {
+        background: 'black',
+      },
+    ], {
+      // timing options
+      duration: 1000,
+      iterations: 1,
+    });
   }
 }
 
@@ -217,9 +225,16 @@ function keyHandler() {
 }
 
 function clickHandler() {
-  document.getElementById('keyboard').addEventListener('click', ({ target: { id } }) => {
+  document.getElementById('keyboard').addEventListener('click', ({
+    target: {
+      id,
+    },
+  }) => {
     handlerKeyAndClick(id);
   });
 }
 
-export { keyHandler, clickHandler };
+export {
+  keyHandler,
+  clickHandler,
+};
