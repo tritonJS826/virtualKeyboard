@@ -2,12 +2,12 @@ import renderKeyboard from './renderKeyboard';
 import allButtonsArray from './allButtonsArray';
 
 
-const enLanguage = 'en';
-const ruLanguage = 'ru';
+const EN_LANGUAGE = 'en';
+const RU_LANGUAGE = 'ru';
 const baseUppercase = false;
 
 const keyboardBaseState = {
-  language: enLanguage,
+  language: EN_LANGUAGE,
   uppercase: baseUppercase,
 
   keyboardType() {
@@ -20,10 +20,10 @@ const keyboardBaseState = {
   },
 
   changeLanguage() {
-    if (this.language === enLanguage) {
-      this.language = ruLanguage;
+    if (this.language === EN_LANGUAGE) {
+      this.language = RU_LANGUAGE;
     } else {
-      this.language = enLanguage;
+      this.language = EN_LANGUAGE;
     }
   },
 
@@ -45,17 +45,19 @@ const keyboardBaseState = {
   renderKeyboard(keyboardType = this.keyboardType()) {
     const elems = Array.from(document.querySelectorAll('.key__pressed'));
     const pressedKeysId = elems.map((el) => el.id);
+
     renderKeyboard(keyboardType, allButtonsArray, 'keyboard');
     pressedKeysId.forEach((keyId) => {
       document.getElementById(keyId).classList.add('key__pressed');
     });
+    if (this.uppercase === true) {
+      document.getElementById('capslock').classList.add('key__pressed');
+    }
   },
 
   saveKeyboardType() {
-    const {
-      language,
-      uppercase,
-    } = this;
+    const { language, uppercase } = this;
+
     localStorage.setItem('keyboardType', JSON.stringify({
       language,
       uppercase,
@@ -63,17 +65,16 @@ const keyboardBaseState = {
   },
 
   loadKeyboardType() {
-    if (localStorage.getItem('keyboardType')) {
+    const keyboardType = localStorage.getItem('keyboardType');
+
+    if (keyboardType) {
       const {
         language,
         uppercase,
-      } = JSON.parse(localStorage.getItem('keyboardType'));
+      } = JSON.parse(keyboardType);
+
       this.language = language || this.language;
       this.uppercase = uppercase || this.uppercase;
-      renderKeyboard(this.keyboardType(), allButtonsArray, 'keyboard');
-      if (this.uppercase === true) {
-        document.getElementById('capslock').classList.add('key__pressed');
-      }
     }
   },
 };

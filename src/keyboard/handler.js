@@ -2,26 +2,38 @@ import allButtonsArray from './allButtonsArray';
 import keyboardBaseState from './keyboardState';
 
 const pressedModificator = 'key__pressed';
+const ENTER = 'enter';
+const BACKSPACE = 'Backspace';
+const TAB = 'tab';
+const SPACE = 'space';
+const WIN = 'win';
+const CAPSLOCK = 'capslock';
+const SHIFT_LEFT = 'ShiftLeft';
+const SHIFT_RIGHT = 'ShiftRight';
+const CONTROL_LEFT = 'ControlLeft';
+const CONTROL_RIGHT = 'ControlRight';
+const ALT_LEFT = 'leftAlt';
+const ALT_RIGHT = 'rightAlt';
+
 
 function colorKeyAnim(id) {
   const key = document.getElementById(id);
-  const isEnter = (id === 'enter');
-  const isBackspace = (id === 'Backspace');
-  const isTab = (id === 'tab');
-  const isSpace = (id === 'space');
-  const isWin = (id === 'win');
+  const isEnter = (id === ENTER);
+  const isBackspace = (id === BACKSPACE);
+  const isTab = (id === TAB);
+  const isSpace = (id === SPACE);
+  const isWin = (id === WIN);
   const arrow = (id === 'arrow↑' || id === 'arrow←' || id === 'arrow↓' || id === 'arrow→');
   const isKeyHasComplicateId = (isEnter || isBackspace || isTab || isSpace || isWin || arrow);
   const isSimpleKeyOrDigit = (id.length === 1);
 
   if (isSimpleKeyOrDigit || isKeyHasComplicateId) {
-    key.animate([
-      {
-        background: 'orange',
-      },
-      {
-        background: 'black',
-      },
+    key.animate([{
+      background: 'orange',
+    },
+    {
+      background: 'black',
+    },
     ], {
       duration: 1000,
       iterations: 1,
@@ -29,15 +41,18 @@ function colorKeyAnim(id) {
   }
 }
 
+function addTextInTextarea(text) {
+  const textarea = document.getElementById('textarea');
+  textarea.setRangeText(text, textarea.selectionStart, textarea.selectionStart, 'end');
+  textarea.focus();
+}
 
 function printSimpleKey(id) {
   const isSimpleKeyOrDigit = (id.length === 1);
-  const textarea = document.getElementById('textarea');
+  const key = document.getElementById(id).innerText;
+
   if (isSimpleKeyOrDigit) {
-    textarea.value += document.getElementById(id).innerText;
-  }
-  if (isSimpleKeyOrDigit && textarea === document.activeElement) {
-    textarea.value = textarea.value.slice(0, textarea.value.length - 1);
+    addTextInTextarea(key);
   }
 }
 
@@ -67,143 +82,114 @@ function changePairStyleLang(firstId, secondId) {
   keyboardBaseState.renderKeyboard();
 }
 
+function isContainPressedModificator(id) {
+  return document.getElementById(id).classList.contains(pressedModificator);
+}
+
 function notSimpleKey(id) {
   const textarea = document.getElementById('textarea');
-  const space = 'space';
-  const enter = 'enter';
-  const backspace = 'Backspace';
-  const tab = 'tab';
-  const win = 'win';
-  const capsLock = 'capslock';
-  const shiftLeft = 'ShiftLeft';
-  const shiftRight = 'ShiftRight';
-  const controlLeft = 'ControlLeft';
-  const controlRight = 'ControlRight';
-  const leftAlt = 'leftAlt';
-  const rightAlt = 'rightAlt';
-  if (id === space) {
-    textarea.value += ' ';
+
+  if (id === SPACE) {
+    addTextInTextarea(' ');
   }
-  if (id === enter) {
-    textarea.value += '\n';
+  if (id === ENTER) {
+    addTextInTextarea('\n');
   }
-  if (id === backspace) {
-    if (textarea === document.activeElement) return;
-    textarea.value = textarea.value.slice(0, textarea.value.length - 1);
+  if (id === BACKSPACE) {
+    if (textarea.selectionStart !== 0) {
+      textarea.setRangeText('', textarea.selectionStart - 1, textarea.selectionStart, 'end');
+    }
   }
-  if (id === tab) {
-    textarea.value += '\t';
+  if (id === TAB) {
+    addTextInTextarea('\t');
   }
-  if (id === win) {
-    textarea.value += 'Что должно произойти?';
+  if (id === WIN) {
+    addTextInTextarea('Что должно произойти?');
   }
-  if (id === capsLock) {
+  if (id === CAPSLOCK) {
     changeStylePressed(id);
     changeUppercase();
     keyboardBaseState.renderKeyboard();
   }
-  if (id === shiftLeft) {
-    const isShiftRightPressed = document.getElementById(shiftRight)
-      .classList.contains(pressedModificator);
-    const isControlLeftPressed = document.getElementById(controlLeft)
-      .classList.contains(pressedModificator);
-    const isControlRightPressed = document.getElementById(controlRight)
-      .classList.contains(pressedModificator);
+  if (id === SHIFT_LEFT) {
     changeStylePressed(id);
-    if (isShiftRightPressed) {
-      changeStylePressed(shiftRight);
+    if (isContainPressedModificator(SHIFT_RIGHT)) {
+      changeStylePressed(SHIFT_RIGHT);
       return;
     }
-    if (isControlLeftPressed) {
-      changePairStyleLang(id, controlLeft);
+    if (isContainPressedModificator(CONTROL_LEFT)) {
+      changePairStyleLang(id, CONTROL_LEFT);
       return;
     }
-    if (isControlRightPressed) {
-      changePairStyleLang(id, controlRight);
+    if (isContainPressedModificator(CONTROL_RIGHT)) {
+      changePairStyleLang(id, CONTROL_RIGHT);
       return;
     }
     // if other shifts and ctrls not pressed
     changeUppercase();
     keyboardBaseState.renderKeyboard();
   }
-  if (id === shiftRight) {
-    const isShiftLeftPressed = document.getElementById(shiftLeft)
-      .classList.contains(pressedModificator);
-    const isControlLeftPressed = document.getElementById(controlLeft)
-      .classList.contains(pressedModificator);
-    const isControlRightPressed = document.getElementById(controlRight)
-      .classList.contains(pressedModificator);
+  if (id === SHIFT_RIGHT) {
     changeStylePressed(id);
-    if (isShiftLeftPressed) {
-      changeStylePressed(shiftLeft);
+    if (isContainPressedModificator(SHIFT_LEFT)) {
+      changeStylePressed(SHIFT_LEFT);
       return;
     }
-    if (isControlLeftPressed) {
-      changePairStyleLang(id, controlLeft);
+    if (isContainPressedModificator(CONTROL_LEFT)) {
+      changePairStyleLang(id, CONTROL_LEFT);
       return;
     }
-    if (isControlRightPressed) {
-      changePairStyleLang(id, controlRight);
+    if (isContainPressedModificator(CONTROL_RIGHT)) {
+      changePairStyleLang(id, CONTROL_RIGHT);
       return;
     }
     // if other shifts and ctrls not pressed
     changeUppercase();
     keyboardBaseState.renderKeyboard();
   }
-  if (id === controlLeft) {
-    const isControlRightPressed = document.getElementById(controlRight)
-      .classList.contains(pressedModificator);
-    const isShiftLeftPressed = document.getElementById(shiftLeft)
-      .classList.contains(pressedModificator);
-    const isShiftRightPressed = document.getElementById(shiftRight)
-      .classList.contains(pressedModificator);
+  if (id === CONTROL_LEFT) {
     changeStylePressed(id);
-    if (isControlRightPressed) {
-      changeStylePressed(controlRight);
+    if (isContainPressedModificator(CONTROL_RIGHT)) {
+      changeStylePressed(CONTROL_RIGHT);
     }
-    if (isShiftLeftPressed) {
+    if (isContainPressedModificator(SHIFT_LEFT)) {
       changeUppercase();
-      changePairStyleLang(id, shiftLeft);
+      changePairStyleLang(id, SHIFT_LEFT);
       return;
     }
-    if (isShiftRightPressed) {
+    if (isContainPressedModificator(SHIFT_RIGHT)) {
       changeUppercase();
-      changePairStyleLang(id, shiftRight);
+      changePairStyleLang(id, SHIFT_RIGHT);
     }
   }
-  if (id === controlRight) {
-    const isControlLeftPressed = document.getElementById(controlLeft)
-      .classList.contains(pressedModificator);
-    const isShiftLeftPressed = document.getElementById(shiftLeft)
-      .classList.contains(pressedModificator);
-    const isShiftRightPressed = document.getElementById(shiftRight)
-      .classList.contains(pressedModificator);
+  if (id === CONTROL_LEFT) {
     changeStylePressed(id);
-    if (isControlLeftPressed) {
-      changeStylePressed(controlLeft);
+    if (isContainPressedModificator(CONTROL_LEFT)) {
+      changeStylePressed(CONTROL_LEFT);
     }
-    if (isShiftLeftPressed) {
+    if (isContainPressedModificator(SHIFT_LEFT)) {
       changeUppercase();
-      changePairStyleLang(id, shiftLeft);
+      changePairStyleLang(id, SHIFT_LEFT);
     }
-    if (isShiftRightPressed) {
+    if (isContainPressedModificator(SHIFT_RIGHT)) {
       changeUppercase();
-      changePairStyleLang(id, shiftRight);
+      changePairStyleLang(id, SHIFT_RIGHT);
     }
   }
-  if (id === leftAlt) {
-    const isRightAltPressed = document.getElementById(rightAlt)
-      .classList.contains(pressedModificator);
+  if (id === ALT_LEFT) {
     changeStylePressed(id);
-    if (isRightAltPressed) changeStylePressed(rightAlt);
+    if (isContainPressedModificator(ALT_RIGHT)) {
+      changeStylePressed(ALT_RIGHT);
+    }
   }
-  if (id === rightAlt) {
-    const isLeftAltPressed = document.getElementById(leftAlt)
-      .classList.contains(pressedModificator);
+  if (id === ALT_RIGHT) {
     changeStylePressed(id);
-    if (isLeftAltPressed) changeStylePressed(leftAlt);
+    if (isContainPressedModificator(ALT_LEFT)) {
+      changeStylePressed(ALT_LEFT);
+    }
   }
 }
+
 
 function handlerKeyAndClick(id) {
   colorKeyAnim(id);
@@ -212,21 +198,22 @@ function handlerKeyAndClick(id) {
 }
 
 function keyHandler() {
-  document.addEventListener('keydown', ({
-    code,
-  }) => {
-    const {
-      id,
-    } = allButtonsArray.find((el) => el.code === code);
-    handlerKeyAndClick(id);
+  document.addEventListener('keydown', (e) => {
+    const allButtonsArr = allButtonsArray.find((el) => el.code === e.code);
+
+    if (allButtonsArr) {
+      const { id } = allButtonsArr;
+      const isArrowPressed = (id.includes('arrow'));
+
+      handlerKeyAndClick(id);
+      if (!isArrowPressed) e.preventDefault();
+    }
   });
 }
 
 function clickHandler() {
   document.getElementById('keyboard').addEventListener('click', ({
-    target: {
-      id,
-    },
+    target: { id },
   }) => {
     handlerKeyAndClick(id);
   });
