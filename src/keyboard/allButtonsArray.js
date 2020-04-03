@@ -272,10 +272,10 @@ const allButtonsArray = [{
   ruShift: 'Ж',
   enShift: ':',
 }, {
-  id: "'",
+  id: 'э',
   code: 'Quote',
   ru: 'э',
-  en: "'",
+  en: '&#39;',
   ruShift: 'Э',
   enShift: '&#34',
 }, {
