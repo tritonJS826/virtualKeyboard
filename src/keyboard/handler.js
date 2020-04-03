@@ -162,7 +162,7 @@ function notSimpleKey(id) {
       changePairStyleLang(id, SHIFT_RIGHT);
     }
   }
-  if (id === CONTROL_LEFT) {
+  if (id === CONTROL_RIGHT) {
     changeStylePressed(id);
     if (isContainPressedModificator(CONTROL_LEFT)) {
       changeStylePressed(CONTROL_LEFT);
@@ -199,10 +199,10 @@ function handlerKeyAndClick(id) {
 
 function keyHandler() {
   document.addEventListener('keydown', (e) => {
-    const allButtonsArr = allButtonsArray.find((el) => el.code === e.code);
+    const key = allButtonsArray.find((el) => el.code === e.code);
 
-    if (allButtonsArr) {
-      const { id } = allButtonsArr;
+    if (key) {
+      const { id } = key;
       const isArrowPressed = (id.includes('arrow'));
 
       handlerKeyAndClick(id);
