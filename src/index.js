@@ -6,7 +6,7 @@ import { keyHandler, clickHandler } from './keyboard/handler';
 document.body.innerHTML = `
   <div id="input-field" class="input-field">
     <div class="keyboardState" id="keyboardState"></div>
-    <textarea class="textarea" id="textarea"></textarea>
+    <textarea class="textarea" id="textarea" autofocus></textarea>
   </div>
   <div id="keyboard" class="keyboard"></div>
   ${document.body.innerHTML}`;
