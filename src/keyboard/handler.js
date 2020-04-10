@@ -23,11 +23,14 @@ function colorKeyAnim(id) {
   const isTab = (id === TAB);
   const isSpace = (id === SPACE);
   const isWin = (id === WIN);
+  const isContrl = (id === CONTROL_LEFT || id === CONTROL_RIGHT);
+  const isShift = (id === SHIFT_LEFT || id === SHIFT_RIGHT);
   const arrow = (id === 'arrow↑' || id === 'arrow←' || id === 'arrow↓' || id === 'arrow→');
   const isKeyHasComplicateId = (isEnter || isBackspace || isTab || isSpace || isWin || arrow);
   const isSimpleKeyOrDigit = (id.length === 1);
+  const isContrlOrShift = (isContrl || isShift);
 
-  if (isSimpleKeyOrDigit || isKeyHasComplicateId) {
+  if (isSimpleKeyOrDigit || isKeyHasComplicateId || isContrlOrShift) {
     key.animate([{
       background: 'orange',
     },
@@ -80,6 +83,8 @@ function changePairStyleLang(firstId, secondId) {
   changeStylePressed(firstId);
   changeStylePressed(secondId);
   keyboardBaseState.renderKeyboard();
+  colorKeyAnim(firstId);
+  colorKeyAnim(secondId);
 }
 
 function isContainPressedModificator(id) {
@@ -161,6 +166,8 @@ function notSimpleKey(id) {
       changeUppercase();
       changePairStyleLang(id, SHIFT_RIGHT);
     }
+    // KILL ANIMATION
+    keyboardBaseState.renderKeyboard();
   }
   if (id === CONTROL_RIGHT) {
     changeStylePressed(id);
@@ -175,6 +182,8 @@ function notSimpleKey(id) {
       changeUppercase();
       changePairStyleLang(id, SHIFT_RIGHT);
     }
+    // KILL ANIMATION
+    keyboardBaseState.renderKeyboard();
   }
   if (id === ALT_LEFT) {
     changeStylePressed(id);
