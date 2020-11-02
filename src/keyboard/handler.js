@@ -1,5 +1,7 @@
 import allButtonsArray from './allButtonsArray';
 import keyboardBaseState from './keyboardState';
+import myRecognition from './onSpeachRecognitionBtn';
+import musicEffect from './musicEffect';
 
 const pressedModificator = 'key__pressed';
 const ENTER = 'enter';
@@ -14,33 +16,41 @@ const CONTROL_LEFT = 'ControlLeft';
 const CONTROL_RIGHT = 'ControlRight';
 const ALT_LEFT = 'leftAlt';
 const ALT_RIGHT = 'rightAlt';
-
+const TOGGLE_LANG = 'RuEn';
+const RECOGNITION_BTN = 'recognition';
 
 function colorKeyAnim(id) {
   const key = document.getElementById(id);
-  const isEnter = (id === ENTER);
-  const isBackspace = (id === BACKSPACE);
-  const isTab = (id === TAB);
-  const isSpace = (id === SPACE);
-  const isWin = (id === WIN);
-  const isContrl = (id === CONTROL_LEFT || id === CONTROL_RIGHT);
-  const isShift = (id === SHIFT_LEFT || id === SHIFT_RIGHT);
-  const arrow = (id === 'arrow↑' || id === 'arrow←' || id === 'arrow↓' || id === 'arrow→');
-  const isKeyHasComplicateId = (isEnter || isBackspace || isTab || isSpace || isWin || arrow);
-  const isSimpleKeyOrDigit = (id.length === 1);
-  const isContrlOrShift = (isContrl || isShift);
+  const isEnter = id === ENTER;
+  const isBackspace = id === BACKSPACE;
+  const isTab = id === TAB;
+  const isSpace = id === SPACE;
+  const isWin = id === WIN;
+  const isContrl = id === CONTROL_LEFT || id === CONTROL_RIGHT;
+  const isShift = id === SHIFT_LEFT || id === SHIFT_RIGHT;
+  const arrow = id === 'arrow↑' || id === 'arrow←' || id === 'arrow↓' || id === 'arrow→';
+  const isToggleLang = id === TOGGLE_LANG;
+  const isKeyHasComplicateId = isEnter || isBackspace || isTab || isSpace || isWin || arrow
+  || isToggleLang;
+  const isSimpleKeyOrDigit = id.length === 1;
+  const isContrlOrShift = isContrl || isShift;
+
 
   if (isSimpleKeyOrDigit || isKeyHasComplicateId || isContrlOrShift) {
-    key.animate([{
-      background: 'orange',
-    },
-    {
-      background: 'black',
-    },
-    ], {
-      duration: 1000,
-      iterations: 1,
-    });
+    key.animate(
+      [
+        {
+          background: 'orange',
+        },
+        {
+          background: 'black',
+        },
+      ],
+      {
+        duration: 1000,
+        iterations: 1,
+      },
+    );
   }
 }
 
@@ -51,7 +61,7 @@ function addTextInTextarea(text) {
 }
 
 function printSimpleKey(id) {
-  const isSimpleKeyOrDigit = (id.length === 1);
+  const isSimpleKeyOrDigit = id.length === 1;
   const key = document.getElementById(id).innerText;
 
   if (isSimpleKeyOrDigit) {
@@ -76,6 +86,7 @@ function changeUppercase() {
 function changeLanguage() {
   keyboardBaseState.changeLanguage();
   keyboardBaseState.renderState('keyboardState');
+  myRecognition.changeLang(keyboardBaseState.language);
 }
 
 function changePairStyleLang(firstId, secondId) {
@@ -92,6 +103,8 @@ function isContainPressedModificator(id) {
 }
 
 function notSimpleKey(id) {
+  musicEffect();
+
   const textarea = document.getElementById('textarea');
 
   if (id === SPACE) {
@@ -110,6 +123,18 @@ function notSimpleKey(id) {
   }
   if (id === WIN) {
     addTextInTextarea('Что должно произойти?');
+  }
+  if (id === TOGGLE_LANG) {
+    changeLanguage();
+    keyboardBaseState.renderKeyboard();
+  }
+  if (id === RECOGNITION_BTN) {
+    changeStylePressed(id);
+    if (isContainPressedModificator(RECOGNITION_BTN)) {
+      myRecognition.start();
+    } else {
+      myRecognition.stop();
+    }
   }
   if (id === CAPSLOCK) {
     changeStylePressed(id);
@@ -199,7 +224,6 @@ function notSimpleKey(id) {
   }
 }
 
-
 function handlerKeyAndClick(id) {
   colorKeyAnim(id);
   printSimpleKey(id);
@@ -212,7 +236,7 @@ function keyHandler() {
 
     if (key) {
       const { id } = key;
-      const isArrowPressed = (id.includes('arrow'));
+      const isArrowPressed = id.includes('arrow');
 
       handlerKeyAndClick(id);
       if (!isArrowPressed) e.preventDefault();
@@ -221,14 +245,9 @@ function keyHandler() {
 }
 
 function clickHandler() {
-  document.getElementById('keyboard').addEventListener('click', ({
-    target: { id },
-  }) => {
+  document.getElementById('keyboard').addEventListener('click', ({ target: { id } }) => {
     handlerKeyAndClick(id);
   });
 }
 
-export {
-  keyHandler,
-  clickHandler,
-};
+export { keyHandler, clickHandler };

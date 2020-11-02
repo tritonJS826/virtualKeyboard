@@ -1,5 +1,6 @@
 * {
   transition: all 0.5s;
+  box-sizing: border-box;
 }
 
 body {
@@ -24,7 +25,7 @@ body {
 
 .keyboard {
   display: flex;
-  width: 700px;
+  width: 90%;
   flex-wrap: wrap;
   justify-content: space-between;
   background: darkgrey;
@@ -37,40 +38,52 @@ body {
   background: black;
   color: white;
   height: 30px;
-  margin: 2px;
-  min-width: 41px;
-  max-width: 41px;
+  margin: 0.2%;
+  /* padding: 1px; */
+  min-width: 5.86%;
+  max-width: 5.86%;
   border-radius: 3px;
+  font-size: 18px;
 }
 
 .key__Backspace {
-  min-width: 90px;
-  max-width: 90px;
+  min-width: 12.86%;
+  max-width: 12.86%;
 }
 
 .key__enter {
-  max-width: 90px;
-  min-width: 90px;
+  max-width: 12.86%;
+  min-width: 12.86%;
 }
 
 .key__capslock {
-  min-width: 90px;
-  max-width: 90px;
+  min-width: 12.86%;
+  max-width: 12.86%;
 }
 
 .key__shift {
-  max-width: 100px;
-  min-width: 100px;
+  max-width: 14.29%;
+  min-width: 14.29%;
 }
 
 .key__space {
-  max-width: 310px;
-  min-width: 310px;
+  max-width: 54.31%;
+  min-width: 54.31%;
 }
 
 .key__ShiftLeft {
-  max-width: 115px;
-  min-width: 115px;
+  max-width: 16.43%;
+  min-width: 16.43%;
+}
+
+.key__RuEn {
+  max-width: 48%;
+  min-width: 48%;
+}
+
+.key__recognition {
+  max-width: 48%;
+  min-width: 48%;
 }
 
 .key__pressed {
