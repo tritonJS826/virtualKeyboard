@@ -1,0 +1,101 @@
+* {
+  transition: all 0.5s;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.input-field {
+  width: 700px;
+}
+
+.textarea {
+  width: 99%;
+  height: 250px;
+  background: black;
+  color: white;
+  font-size: 20pt;
+}
+
+.keyboard {
+  display: flex;
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: darkgrey;
+}
+
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color: white;
+  height: 30px;
+  margin: 0.2%;
+  /* padding: 1px; */
+  min-width: 5.86%;
+  max-width: 5.86%;
+  border-radius: 3px;
+  font-size: 18px;
+}
+
+.key__Backspace {
+  min-width: 12.86%;
+  max-width: 12.86%;
+}
+
+.key__enter {
+  max-width: 12.86%;
+  min-width: 12.86%;
+}
+
+.key__capslock {
+  min-width: 12.86%;
+  max-width: 12.86%;
+}
+
+.key__shift {
+  max-width: 14.29%;
+  min-width: 14.29%;
+}
+
+.key__space {
+  max-width: 54.31%;
+  min-width: 54.31%;
+}
+
+.key__ShiftLeft {
+  max-width: 16.43%;
+  min-width: 16.43%;
+}
+
+.key__RuEn {
+  max-width: 48%;
+  min-width: 48%;
+}
+
+.key__recognition {
+  max-width: 48%;
+  min-width: 48%;
+}
+
+.key__pressed {
+  background: orange;
+}
+
+@keyframes onpress {
+  from {
+    background: orange;
+  }
+
+  to {
+    background: black;
+  }
+}
